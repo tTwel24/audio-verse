@@ -855,105 +855,73 @@ body {
 }
 
 /* =========================================
-   14. SULAP JADI APLIKASI HP (RESPONSIVE)
+   14. SULAP JADI APLIKASI HP (RESPONSIVE FINAL)
    ========================================= */
-
-@media screen and(max-width: 768px) {
-
- /* 1. KOTAK NAVIGASI ATAS (Search Bar) */
-
-.top-nav {
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.search-group {
-    width: 100%;
-    order: 3;
-}
-
-.user-profile {
-    margin-left: auto;
-}
-
-#search-button {
-    padding: 0 15px;
-}
-
- /* 2. SIDEBAR JADI MENU MELAYANG (OFF-CANVAS) */
-
-.sidebar {
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: -100%;
-    width: 260px;
-    height: 100vh;
-    box-shadow: 5px 0 15px rgba(0,0,0,0.8);
-    transition: left 0.3 ease;
-}
-
-.sidebar.collapsed {
-    left: 0;
-    width: 260px;
-    padding: 30px 20px;
-    align-items: flex-start;
-}
-
-.sidebar.collapsed .logo {
-    display: flex;
-}
-
-.sidebar.collapsed .logo-text .sidebar.collapsed .nav-text {
-    opacity: 1;
-    visibility: visible;
-    display: inline;
-}
-
- /* 3. PEMUTAR MUSIK BAWAH (ANTI GEPENG) */
-.player-content {
-    padding: 5px 15px;
-    height: 70px;
+@media screen and (max-width: 768px) {
+    
+    /* --- 1. SULAP SIDEBAR (Defaultnya Menyusut / Mini) --- */
+    .sidebar {
+        position: absolute;
+        z-index: 1000;
+        width: 70px; /* Di HP, defaultnya mengkerut jadi mini */
+        height: 100vh;
+        padding: 20px 10px;
     }
+    .sidebar .logo-text, .sidebar .nav-text { display: none; }
+    .sidebar-header { justify-content: center; margin-bottom: 30px; }
+    .sidebar-nav li { justify-content: center; padding: 15px 0; }
 
-.player-info {
-    width: 60%;
-}
+    /* Jika Hamburger diklik (JS nambahin class 'collapsed') */
+    /* Di HP logikanya KITA BALIK: Class 'collapsed' justru bikin dia MELEBAR! */
+    .sidebar.collapsed {
+        width: 260px;
+        padding: 30px 20px;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.9);
+    }
+    .sidebar.collapsed .logo-text, .sidebar.collapsed .nav-text { display: inline; opacity: 1; visibility: visible; }
+    .sidebar.collapsed .sidebar-header { justify-content: flex-start; }
+    .sidebar.collapsed .sidebar-nav li { justify-content: flex-start; padding: 15px; }
 
-#player-img {
-    width: 45px;
-    height: 45px;
-}
 
-.player-text p {
-    display: none;
-}
+    /* --- 2. SULAP KOTAK PENCARIAN (Biar Panjang & Lega) --- */
+    .main-content {
+        margin-left: 70px; /* Geser layar ke kanan menghindari Mini Sidebar */
+        padding: 20px 15px;
+    }
+    .top-nav { gap: 10px; }
+    
+    .search-group {
+        flex: 1; /* 💉 OBAT ANTI-KERDIL: Paksa kotak search melar penuhi ruang kosong! */
+    }
+    .search-wrapper { max-width: 100%; }
+    
+    #search-input { height: 45px; font-size: 14px; }
+    .btn-primary { padding: 0 15px; height: 45px; }
 
-.player-text h4 {
-    font-size: 13px;
-}
 
-.custom-controls {
-    width: 40%;
-    gap: 15px;
-    justify-content: flex-end;
-}
+    /* --- 3. SULAP PEMUTAR MUSIK BAWAH (Anti-Nempel & Anti-Gepeng) --- */
+    .player-content {
+        padding: 5px 15px;
+        height: 75px;
+    }
+    .player-info {
+        width: 50%; /* Jatah judul dikurangi biar tombol play lebih lega */
+        gap: 10px;
+    }
+    #player-img { width: 40px; height: 40px; }
+    .player-text p { display: none; /* Buang nama artis di HP biar judul nggak gepeng */ }
+    .player-text h4 { font-size: 13px; }
+    
+    /* Tombol Play & Next ditarik ke Kanan dan Dijauhkan */
+    .custom-controls {
+        width: 50%;
+        justify-content: flex-end; /* Rapatkan ke kanan */
+        gap: 25px; /* 💉 OBAT ANTI-NEMPEL: Jarak antar tombol dijauhkan drastis! */
+    }
+    .play-circle-btn { width: 38px; height: 38px; font-size: 14px; }
 
-.play-circle-btn {
-    width: 35px;
-    height: 35px;
-    font-size: 14px;
-}
-
-.player-extra {
-    display: none;
-}
-
-.progress-area span {
-    display: none;
-}
-
-#shuffle-btn, #repeat-btn {
-    display: none;
-}
+    /* Musnahkan elemen yang bikin sumpek di HP */
+    .player-extra, #shuffle-btn, #repeat-btn, .progress-area span {
+        display: none;
+    }
 }
