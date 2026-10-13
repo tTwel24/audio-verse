@@ -855,73 +855,76 @@ body {
 }
 
 /* =========================================
-   14. SULAP JADI APLIKASI HP (RESPONSIVE FINAL)
+   14. SULAP JADI APLIKASI HP (OFF-CANVAS DRAWER)
    ========================================= */
 @media screen and (max-width: 768px) {
     
-    /* --- 1. SULAP SIDEBAR (Defaultnya Menyusut / Mini) --- */
-    .sidebar {
-        position: absolute;
-        z-index: 1000;
-        width: 70px; /* Di HP, defaultnya mengkerut jadi mini */
-        height: 100vh;
-        padding: 20px 10px;
-    }
-    .sidebar .logo-text, .sidebar .nav-text { display: none; }
-    .sidebar-header { justify-content: center; margin-bottom: 30px; }
-    .sidebar-nav li { justify-content: center; padding: 15px 0; }
-
-    /* Jika Hamburger diklik (JS nambahin class 'collapsed') */
-    /* Di HP logikanya KITA BALIK: Class 'collapsed' justru bikin dia MELEBAR! */
-    .sidebar.collapsed {
-        width: 260px;
-        padding: 30px 20px;
-        box-shadow: 5px 0 15px rgba(0,0,0,0.9);
-    }
-    .sidebar.collapsed .logo-text, .sidebar.collapsed .nav-text { display: inline; opacity: 1; visibility: visible; }
-    .sidebar.collapsed .sidebar-header { justify-content: flex-start; }
-    .sidebar.collapsed .sidebar-nav li { justify-content: flex-start; padding: 15px; }
-
-
-    /* --- 2. SULAP KOTAK PENCARIAN (Biar Panjang & Lega) --- */
+    /* 1. LAYAR UTAMA DIBIKIN LEGA 100% (Hapus jarak kiri) */
     .main-content {
-        margin-left: 70px; /* Geser layar ke kanan menghindari Mini Sidebar */
+        margin-left: 0; 
         padding: 20px 15px;
+        padding-bottom: 100px;
     }
-    .top-nav { gap: 10px; }
-    
-    .search-group {
-        flex: 1; /* 💉 OBAT ANTI-KERDIL: Paksa kotak search melar penuhi ruang kosong! */
+
+    /* 2. KOTAK NAVIGASI ATAS */
+    .top-nav {
+        flex-wrap: wrap; 
+        gap: 15px;
     }
+    .search-group { width: 100%; order: 3; }
     .search-wrapper { max-width: 100%; }
-    
+    .user-profile { margin-left: auto; }
     #search-input { height: 45px; font-size: 14px; }
     .btn-primary { padding: 0 15px; height: 45px; }
 
+    /* 3. SIDEBAR NGUMPET TOTAL DI LUAR LAYAR (KIRI) */
+    .sidebar {
+        position: fixed;
+        z-index: 9999; /* Paling atas biar nutupin player bawah */
+        top: 0;
+        left: -100%; /* 👈 INI SIHIRNYA: Sembunyi sejauh 100% ke kiri layar! */
+        width: 260px; /* Lebar normal */
+        height: 100vh;
+        box-shadow: none;
+        transition: left 0.3s ease; /* Bergerak mulus pas dipanggil */
+    }
+    
+    /* 4. SAAT HAMBURGER DIKLIK (LUNCURKAN KE DALAM LAYAR!) */
+    .sidebar.collapsed {
+        left: 0; /* Tarik posisinya ke layar utama */
+        width: 260px; 
+        padding: 30px 20px;
+        align-items: flex-start;
+        box-shadow: 10px 0 25px rgba(0,0,0,0.8); /* Kasih bayangan tebal biar dramatis */
+    }
+    
+    /* PAKSA LOGO & TEKS MUNCUL KEMBALI DI HP (Mengalahkan CSS Desktop) */
+    .sidebar.collapsed .logo { display: block !important; }
+    .sidebar.collapsed .logo-text, 
+    .sidebar.collapsed .nav-text {
+        opacity: 1 !important; 
+        visibility: visible !important; 
+        display: inline !important;
+    }
+    .sidebar.collapsed .sidebar-header { justify-content: flex-start !important; margin-bottom: 40px !important; }
+    .sidebar.collapsed .sidebar-nav li { justify-content: flex-start !important; padding: 15px !important; }
 
-    /* --- 3. SULAP PEMUTAR MUSIK BAWAH (Anti-Nempel & Anti-Gepeng) --- */
-    .player-content {
-        padding: 5px 15px;
-        height: 75px;
-    }
-    .player-info {
-        width: 50%; /* Jatah judul dikurangi biar tombol play lebih lega */
-        gap: 10px;
-    }
+    /* 5. PEMUTAR MUSIK BAWAH (ANTI GEPENG) */
+    .global-player { z-index: 1000; }
+    .player-content { padding: 5px 15px; height: 70px; }
+    
+    /* Jatah judul diluaskan, nama artis dibuang */
+    .player-info { width: 65%; gap: 10px; }
     #player-img { width: 40px; height: 40px; }
-    .player-text p { display: none; /* Buang nama artis di HP biar judul nggak gepeng */ }
+    .player-text p { display: none; } 
     .player-text h4 { font-size: 13px; }
     
-    /* Tombol Play & Next ditarik ke Kanan dan Dijauhkan */
-    .custom-controls {
-        width: 50%;
-        justify-content: flex-end; /* Rapatkan ke kanan */
-        gap: 25px; /* 💉 OBAT ANTI-NEMPEL: Jarak antar tombol dijauhkan drastis! */
-    }
-    .play-circle-btn { width: 38px; height: 38px; font-size: 14px; }
-
-    /* Musnahkan elemen yang bikin sumpek di HP */
+    /* Kontrol Play/Next dipinggirkan ke Kanan */
+    .custom-controls { width: 35%; justify-content: flex-end; gap: 15px; }
+    .play-circle-btn { width: 35px; height: 35px; font-size: 14px; }
+    
+    /* MUSNAHKAN ELEMEN YANG BIKIN SUMPEK DI HP! */
     .player-extra, #shuffle-btn, #repeat-btn, .progress-area span {
-        display: none;
+        display: none; 
     }
 }
