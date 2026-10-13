@@ -3,12 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Explorer</title>
+    <title>Audio Verse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-
     <script src="script.js" defer></script>
 </head>
 <body>
-    
+    <!-- 1. SIDEBAR KIRI -->
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+            <h1 class="logo">🎧 <span class="logo-text">Audio Verse</span></h1>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li id="nav-home" class="active"><i class="fas fa-home"></i><span class="nav-text">Home</span></li>
+                <li id="nav-explore"><i class="fas fa-compass"></i><span class="nav-text">Explore</span></li>
+                <li id="nav-library"><i class="fas fa-list-ul"></i><span class="nav-text">Favoritku</span></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- 2. KONTEN UTAMA (Tengah - Kanan) -->
+    <main class="main-content">
+        
+        <!-- A. TOP NAVIGATION -->
+        <header class="top-nav">
+            <button id="menu-toggle-btn" class="menu-btn"><i class="fas fa-bars"></i></button>
+
+            <div class="search-group">
+                <div class="search-wrapper">
+                    <input type="text" id="search-input" placeholder="Cari lagu atau artis...">
+                    <div id="recent-searches-container" class="recent-dropdown"></div>
+                </div>
+                <button id="search-button" class="btn-primary"><i class="fas fa-search"></i> Search</button>
+            </div>
+            
+            <div class="user-profile">
+                <div class="bell-icon" title="Notifikasi"><i class="fas fa-bell"></i></div>
+                <div class="avatar-container">
+                    <div id="user-avatar" class="avatar" title="Profil Saya">ME</div>
+
+                <div id="profile-dropdown" class="profile-dropdown">
+                    <ul>
+                        <li id="btn-profile"><i class="fas fa-user"></i> Profil Saya</li>
+                        <li id="btn-settings"><i class="fas fa-cog"></i> Pengaturan</li>
+                        
+                        <li class="divider"></li>
+                        <li id="logout-btn" class="logout"><i class="fas fa-sign-out-alt"></i> Keluar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </header>
+
+        <!-- B. HERO BANNER -->
+        <div id="hero-banner" class="hero-banner">
+            
+        <div class="hero-text-area">
+            <span class="badge">PILIHAN EDITOR</span>
+            <h2>Melancholy & Modern Indie</h2>
+            <p>Kumpulan lagu untuk menemani waktu malammu. Menampilkan nuansa lo-fi, indie, dan akustik bernuansa melankolis yang direkam dengan kualitas tinggi.</p>
+            <button id="hero-play-btn" class="btn-glow"><i class="fas fa-play"></i> Putar Semua</button>
+        </div>
+
+        <!-- Area Kanan: Slideshow Gambar Lofi -->
+            <div class="hero-image-area">
+                <!-- Gambar 1 (Lofi Girl) -->
+                <img src="images/lofi-1.webp" class="hero-slide slide-1" alt="Lofi Vibe 1">
+                <!-- Gambar 2 (Night City) -->
+                <img src="images/lofi-2.gif" class="hero-slide slide-2" alt="Lofi Vibe 2">
+                <!-- Gambar 3 (Purple Sky) -->
+                <img src="images/lofi-3.webp" class="hero-slide slide-3" alt="Lofi Vibe 3">
+            </div>
+            
+        </div>
+
+        <!-- C. MOOD EXPLORER -->
+        <section id="mood-section">
+            <div class="mood-container">
+                <div class="mood-card" data-keyword="pamungkas, banda neira, rini, sal priadi, fourtwnty, isyana sarasvati, tulus, glenn fredly">
+                    <i class="fas fa-coffee"></i> Santai
+                </div>
+                <div class="mood-card" data-keyword="dua lipa, bruno mars, ed sheeran, the weeknd, taylor swift, ariana grande">
+                    <i class="fas fa-fire"></i> Semangat
+                </div>
+                <div class="mood-card" data-keyword="adele, nadin amizah, mahalini, lewis capaldi, sam smith, billie eilish">
+                    <i class="fas fa-cloud-rain"></i> Sedih
+                </div>
+                <div class="mood-card" data-keyword="michael buble, louis armstrong, frank sinatra, norah jones, ella fitzgerald, laufey">
+                    <i class="fas fa-music"></i> Jazz
+                </div>
+                <div class="mood-card" data-keyword="skrillex, tiesto, martin garrix, alan walker, david guetta, zedd, avicii, calvin harris">
+                    <i class="fas fa-dumbbell"></i> Workout
+                </div>
+
+                <div id="mood-to-fav" class="mood-card" style="background: transparent; border: 1px solid #ff3b3b; color: #ff3b3b;">
+                    <i class="fas fa-heart"></i> Buka Favorit
+                </div>
+            </div>
+        </section>
+
+        <!-- D. HASIL PENCARIAN -->
+        <section id="result-section">
+            <div class="section-header">
+                <h2>Jelajahi Audio</h2>
+            </div>
+            <div id="results-list" class="music-grid"></div>
+        </section>
+
+        <!-- E. DAFTAR FAVORIT -->
+        <section id="favorites-section" class="d-none">
+            <div class="section-header">
+                <h2>Lagu Favoritmu</h2>
+                <button id="clear-favorites-button" class="delete-btn"><i class="fas fa-trash"></i> Kosongkan</button>
+            </div>
+            <div id="favorites-list" class="music-grid"></div>
+        </section> 
+    </main>
+
+    <!-- 3. GLOBAL MUSIC PLAYER -->
+    <footer class="global-player">
+        <!-- GARIS WAKTU MELAYANG DI ATAP PLAYER -->
+        <div id="progress-container" class="progress-top-bar">
+            <div id="progress-bar" class="progress-bar-fill"></div>
+        </div>
+
+        <div class="player-content">
+            <!-- KIRI (Info & Tombol Hati) -->
+            <div class="player-info">
+                <img id="player-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect width='100%25' height='100%25' fill='%231a1a1a'/%3E%3Ctext x='50%25' y='50%25' font-size='24' text-anchor='middle' dominant-baseline='middle' fill='%23555555'%3E%E2%99%AB%3C/text%3E%3C/svg%3E" alt="Cover">
+                <div class="player-text">
+                    <h4 id="player-title">Belum ada lagu</h4>
+                    <p id="player-artist">Pilih lagu untuk memutar</p>
+                </div>
+                <button id="player-fav-btn" class="player-fav-btn"><i class="far fa-heart"></i></button>
+            </div>
+            
+            <!-- TENGAH (5 Kontrol: Shuffle, Prev, Play, Next, Repeat) -->
+            <div class="custom-controls">
+                <button id="shuffle-btn" class="ctrl-btn"><i class="fas fa-random"></i></button> 
+                <button id="prev-btn" class="ctrl-btn"><i class="fas fa-step-backward"></i></button> 
+                <button id="main-play-btn" class="play-circle-btn"><i class="fas fa-play"></i></button> 
+                <button id="next-btn" class="ctrl-btn"><i class="fas fa-step-forward"></i></button> 
+                <button id="repeat-btn" class="ctrl-btn"><i class="fas fa-redo-alt"></i></button>
+            </div>
+
+            <!-- KANAN (Waktu & Volume) -->
+            <div class="player-extra">
+                <div class="time-display">
+                    <span id="current-time">0:00</span> <span style="color:#555;">/</span> <span id="total-duration">0:30</span>
+                </div>
+                
+                <div class="volume-container">
+                    <i id="volume-btn" class="fas fa-volume-up" style="cursor: pointer; transition: 0.3s;"></i>
+                    <input type="range" id="volume-slider" min="0" max="100" value="100">
+                </div>
+            </div>
+            
+            <audio id="main-audio"></audio>
+        </div>
+    </footer>
+
+    <!-- 4. ALAT BANTU (TOAST & MODAL) -->
+    <div id="toast" class="toast"></div>
+
+    <div id="confirm-modal" class="modal-overlay">
+        <div class="modal-box">
+            <h3>⚠️ Konfirmasi</h3>
+            <p>Apakah Anda yakin ingin menghapus SEMUA lagu favorit?</p>
+            <div class="modal-actions">
+                <button id="modal-cancel-btn" class="modal-btn modal-btn-cancel">Batal</button>
+                <button id="modal-confirm-btn" class="modal-btn modal-btn-danger">Ya,<br>Hapus Semua</button>
+            </div>  
+        </div>
+    </div>
 </body>
 </html>
