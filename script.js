@@ -27,6 +27,10 @@ const sidebar = document.querySelector(".sidebar");
 
 const userAvatar = document.getElementById("user-avatar");
 const profileDropdown = document.getElementById("profile-dropdown");
+const bellIcon = document.getElementById("bell-icon");
+const notifDropdown = document.getElementById("notif-dropdown");
+const notifBadge = document.getElementById("notif-badge");
+const backToHomeBtn = document.getElementById("back-to-home-btn");
 
 const navHome = document.getElementById("nav-home");
 const heroBanner = document.getElementById("hero-banner");
@@ -99,6 +103,7 @@ function openLibraryTab() {
 }
 
 navHome.addEventListener("click", openHomeTab);
+backToHomeBtn.addEventListener("click", openHomeTab);
 if(navLibrary) navLibrary.addEventListener("click", openLibraryTab);
 moodToFavBtn.addEventListener("click", openLibraryTab); 
 
@@ -261,6 +266,10 @@ document.addEventListener("click", (event) => {
     if (!userAvatar.contains(event.target) && !profileDropdown.contains(event.target)) {
         profileDropdown.classList.remove("show");
     }
+    if (bellIcon && notifDropdown && !bellIcon.contains(event.target) && !notifDropdown.contains(event.target)) {
+        notifDropdown.classList.remove("show");
+    }
+
 });
 
 // EVENT TOMBOL SEARCH (PANGGIL FUNGSI TAB HOME JUGA!)
@@ -291,7 +300,7 @@ const moodCards = document.querySelectorAll(".mood-card");
 
 if (heroPlayBtn) {
     heroPlayBtn.addEventListener("click", () => {
-        const editorPlaylists = ["lofi chill", "powfu", "payung teduh", "omarr", "sleepy fish", "chillhop", "slipfunc", "reality club", "kudasai lofi"];
+        const editorPlaylists = ["Powfu", "Payung Teduh", "Sleepy Fish", "Anri (杏里)", "slipfunc", "Diskoria", "Danilla", "White Soes & The Couples Company"];
         const randomIndex = Math.floor(Math.random() * editorPlaylists.length);
         const selectedKeyword = editorPlaylists[randomIndex];
         searchInput.value = selectedKeyword;
@@ -378,9 +387,27 @@ function formatTime(seconds) {
     return `${min}:${sec < 10 ? '0'+sec : sec}`;
 }
 
-globalAudio.addEventListener("play", () => { mainPlayBtn.innerHTML = '<i class="fas fa-pause"></i>'; playerImg.classList.add("spinning"); });
-globalAudio.addEventListener("pause", () => { mainPlayBtn.innerHTML = '<i class="fas fa-play"></i>'; playerImg.classList.remove("spinning"); });
-globalAudio.addEventListener("loadeddata", () => { totalDurationEl.textContent = formatTime(globalAudio.duration); currentTimeEl.textContent = "0:00"; });
+globalAudio.addEventListener("play", () => { 
+    mainPlayBtn.innerHTML = '<i class="fas fa-pause"></i>'; playerImg.classList.add("spinning"); 
+});
+
+globalAudio.addEventListener("pause", () => {
+    mainPlayBtn.innerHTML = '<i class="fas fa-play"></i>'; playerImg.classList.remove("spinning"); 
+});
+
+globalAudio.addEventListener("loadeddata", () => { 
+    totalDurationEl.textContent = formatTime(globalAudio.duration); currentTimeEl.textContent = "0:00"; 
+});
+
+globalAudio.addEventListener("waiting", () => {
+    mainPlayBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+});
+
+globalAudio.addEventListener("playing", () => {
+    mainPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    playerImg.classList.add("spinning");
+});
+
 mainPlayBtn.addEventListener("click", () => {
     // 💉 JARING PENGAMAN: Cek apakah src-nya benar-benar URL lagu, bukan URL website kosong!
     if (!globalAudio.src || globalAudio.src.endsWith("index.html") || globalAudio.src === window.location.href) {
@@ -490,3 +517,17 @@ document.getElementById("logout-btn").addEventListener("click", () => {
     showToast("👋 Berhasil Keluar (Logout).");
     profileDropdown.classList.remove("show");
 });
+
+// ==========================================
+// 14. SENSOR NOTIFIKASI
+// ==========================================
+
+if (bellIcon) {
+    bellIcon.addEventListener ("click", () => {
+        notifDropdown.classList.toggle("show");
+
+    if (notifBadge) {
+        notifBadge.style.display = "none";
+        }
+    });
+}

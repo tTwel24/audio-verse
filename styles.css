@@ -247,6 +247,37 @@ body {
     white-space: nowrap; 
 }
 
+/* --- NOTIFIKASI & TITIK MERAH --- */
+.notif-badge {
+    position: absolute; top: 10px; right: 12px;
+    width: 8px; height: 8px;
+    background-color: #e91429; /* Merah terang */
+    border-radius: 50%;
+    border: 1.5px solid #1a1a1a;
+}
+
+.notif-dropdown {
+    position: absolute; top: 120%; right: -10px;
+    background-color: #1a1a1a; border: 1px solid #333; border-radius: 10px;
+    width: 280px; box-shadow: 0 8px 20px rgba(0,0,0,0.6); z-index: 300;
+    opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; cursor: default;
+}
+.notif-dropdown.show { opacity: 1; visibility: visible; transform: translateY(0); }
+
+.notif-dropdown h4 { padding: 15px 20px 10px; font-size: 15px; color: #fff; }
+.notif-dropdown .divider { height: 1px; background-color: #333; margin: 0; }
+
+.notif-item { display: flex; gap: 15px; padding: 15px 20px; align-items: center; transition: 0.2s; cursor: pointer; }
+.notif-item:hover { background-color: #2a2a2a; }
+
+.notif-icon {
+    background-color: rgba(168, 85, 247, 0.2); color: #a855f7;
+    width: 35px; height: 35px; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center; flex-shrink: 0;
+}
+.notif-text p { font-size: 13px; color: #e0e0e0; margin-bottom: 3px; line-height: 1.4; }
+.notif-text span { font-size: 11px; color: #888; }
+
 /* --- PROFIL USER (KANAN) --- */
 .user-profile {
     display: flex;
@@ -435,6 +466,24 @@ body {
     border-bottom: 1px solid #282828; 
     padding-bottom: 10px; 
     margin-bottom: 20px; 
+}
+
+/* --- TOMBOL KEMBALI (BACK TO HOME) --- */
+.back-btn {
+    background: transparent;
+    border: none;
+    color: #b3b3b3;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-btn:hover {
+    color: #a855f7; /* Berubah ungu! */
+    transform: translateX(-5px); /* SIHIR: Animasi mundur (geser kiri sedikit) saat disentuh! */
 }
 
 .delete-btn { 
@@ -914,10 +963,13 @@ body {
     .player-content { padding: 5px 15px; height: 70px; }
     
     /* Jatah judul diluaskan, nama artis dibuang */
-    .player-info { width: 65%; gap: 10px; }
+    .player-info { width: 60%; gap: 10px; overflow: hidden;}
     #player-img { width: 40px; height: 40px; }
-    .player-text p { display: none; } 
-    .player-text h4 { font-size: 13px; }
+
+/* 💉 OBAT ANTI-HILANG NAMA ARTIS: */
+    .player-text { overflow: hidden; width: 100%; } 
+    .player-text h4 { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .player-text p { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
     
     /* Kontrol Play/Next dipinggirkan ke Kanan */
     .custom-controls { width: 35%; justify-content: flex-end; gap: 15px; }

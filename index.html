@@ -40,7 +40,27 @@
             </div>
             
             <div class="user-profile">
-                <div class="bell-icon" title="Notifikasi"><i class="fas fa-bell"></i></div>
+                <div class="notification-container" style="position: relative;">
+                    <div id="bell-icon" class="bell-icon" title="Notifikasi">
+                        <i class="fas fa-bell"></i>
+                        <span id="notif-badge" class="notif-badge"></span>
+                    </div>
+
+                    <div id="notif-dropdown" class="notif-dropdown">
+                        <h4>Notifikasi</h4>
+                        <div class="divider"></div>
+                        <div class="notif-item">
+                            <div class="notif-icon"><i class="fas fa-music"></i>
+                    </div>
+                
+                      <div class="notif-text">
+                                <p><strong>Rilis Baru!</strong> Cek pilihan editor Lofi & Indie sekarang.</p>
+                                <span>Baru saja</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="avatar-container">
                     <div id="user-avatar" class="avatar" title="Profil Saya">ME</div>
 
@@ -62,8 +82,8 @@
             
         <div class="hero-text-area">
             <span class="badge">PILIHAN EDITOR</span>
-            <h2>Melancholy & Modern Indie</h2>
-            <p>Kumpulan lagu untuk menemani waktu malammu. Menampilkan nuansa lo-fi, indie, dan akustik bernuansa melankolis yang direkam dengan kualitas tinggi.</p>
+            <h2>Midnight City & Nostalgia</h2>
+            <p>Bawa dirimu menyusuri malam dengan perpaduan retro City Pop Jepang, ketenangan irama Lo-fi, hingga manisnya melodi Indie lokal. Sempurna untuk menemani waktu santaimu.</p>
             <button id="hero-play-btn" class="btn-glow"><i class="fas fa-play"></i> Putar Semua</button>
         </div>
 
@@ -115,7 +135,12 @@
         <!-- E. DAFTAR FAVORIT -->
         <section id="favorites-section" class="d-none">
             <div class="section-header">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <button id="back-to-home-btn" class="back-btn" title="Kembali ke Home">
+                        <i class="fas fa-arrow-left"></i></button>
                 <h2>Lagu Favoritmu</h2>
+                </div>
+                
                 <button id="clear-favorites-button" class="delete-btn"><i class="fas fa-trash"></i> Kosongkan</button>
             </div>
             <div id="favorites-list" class="music-grid"></div>
