@@ -360,28 +360,24 @@ function playSong(index) {
     globalAudio.src = song.previewUrl;
     globalAudio.play(); 
     updatePlayerHeart(song);
-}
 
-    if(`mediaSession` in navigator) {
+    if ('mediaSession' in navigator) {
         navigator.mediaSession.metadata = new MediaMetadata({
             title: song.trackName || song.collectionName,
             artist: song.artistName,
-            album: `Audio Verse`,
+            album: 'Audio Verse',
             artwork: [
-                { src: highResImage, sizes: `300x300`, type: `image/jpeg` }
+                { src: highResImage, sizes: '300x300', type: 'image/jpeg' } 
             ]
         });
 
-        navigator.mediaSession.setActionHandler(`play`, () => {
-            globalAudio.play(); });
-        navigator.mediaSession.setActionHandler(`pause`, () => {
-            globalAudio.pause(); });
-        navigator.mediaSession.setActionHandler(`previoustrack`, () => {
-            prevBtn.click(); }):
-        navigator.mediaSession.setActionHandler(`nexttrack`, () => {
-            nextBtn.click(); });
-}
-    
+        navigator.mediaSession.setActionHandler('play', () => { globalAudio.play(); });
+        navigator.mediaSession.setActionHandler('pause', () => { globalAudio.pause(); });
+        
+        navigator.mediaSession.setActionHandler('previoustrack', () => { prevBtn.click(); });
+        navigator.mediaSession.setActionHandler('nexttrack', () => { nextBtn.click(); });
+    }
+}    
 
 nextBtn.addEventListener("click", () => {
     let nextIndex = isShuffle ? Math.floor(Math.random() * currentPlaylist.length) : currentSongIndex + 1;
