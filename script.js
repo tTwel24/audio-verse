@@ -31,6 +31,8 @@ const bellIcon = document.getElementById("bell-icon");
 const notifDropdown = document.getElementById("notif-dropdown");
 const notifBadge = document.getElementById("notif-badge");
 const backToHomeBtn = document.getElementById("back-to-home-btn");
+const topNav = document.querySelector(".top-nav");
+const mainContentArea = document.querySelector(".main-content");
 
 const navHome = document.getElementById("nav-home");
 const heroBanner = document.getElementById("hero-banner");
@@ -360,6 +362,27 @@ function playSong(index) {
     updatePlayerHeart(song);
 }
 
+    if(`mediaSession` in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: song.trackName || song.collectionName,
+            artist: song.artistName,
+            album: `Audio Verse`,
+            artwork: [
+                { src: highResImage, sizes: `300x300`, type: `image/jpeg` }
+            ]
+        });
+
+        navigator.mediaSession.setActionHandler(`play`, () => {
+            globalAudio.play(); });
+        navigator.mediaSession.setActionHandler(`pause`, () => {
+            globalAudio.pause(); });
+        navigator.mediaSession.setActionHandler(`previoustrack`, () => {
+            prevBtn.click(); }):
+        navigator.mediaSession.setActionHandler(`nexttrack`, () => {
+            nextBtn.click(); });
+}
+    
+
 nextBtn.addEventListener("click", () => {
     let nextIndex = isShuffle ? Math.floor(Math.random() * currentPlaylist.length) : currentSongIndex + 1;
     if (nextIndex >= currentPlaylist.length) nextIndex = 0; 
@@ -531,3 +554,71 @@ if (bellIcon) {
         }
     });
 }
+
+// ==========================================
+// 15. SMART NAVBAR (SCROLL-TO-HIDE)
+// ==========================================
+
+let lastScrollValue = 0; // Memori untuk mengingat posisi scroll terakhir
+
+mainContentArea.addEventListener("scroll", () => {
+    let currentScrollValue = mainContentArea.scrollTop;
+
+     // Tutup dropdown kalau lagi kebuka
+    recentContainer.classList.remove("show");
+    if (typeof profileDropdown !== 'undefined' && profileDropdown) {
+        profileDropdown.classList.remove("show");
+    }
+
+    // 1. Kalau layar mentok di paling atas (0px), WAJIB MUNCUL!
+    if (currentScrollValue <= 0) {
+        topNav.classList.remove("hidden");
+    } 
+    // 2. Kalau scroll turun, SEMBUNYI!
+    else if (currentScrollValue > lastScrollValue) {
+        topNav.classList.add("hidden"); 
+    } 
+    // 3. 💉 OBAT ANTI-MUNCUL SENDIRI: Kalau scroll naik, harus kerasa naiknya (selisih > 5px), baru muncul!
+    // Ini akan mencegah "micro-bounce" saat mentok di ujung bawah layar.
+    else if (currentScrollValue < lastScrollValue - 5) {
+        topNav.classList.remove("hidden"); 
+    }
+
+    lastScrollValue = currentScrollValue;
+});
+
+/* ==========================================
+   16. KEYBOARD SHORTCUTS 
+   ========================================== */
+
+
+   document.addEventListener("keydown", (event) => {
+
+    console.log("Tombol yang ditekan:", event.key);
+   
+   if (document.activeElement === searchInput) {
+    return;
+   }
+
+   switch (event.key.toLowerCase()) {
+
+        case " ":
+            event.preventDefault();
+            mainPlayBtn.click();
+            break;
+
+        case "arrowleft":
+            if (globalAudio.src) {
+                globalAudio.currentTime -=5;}            
+            break;
+        
+        case "arrowright":
+            if (globalAudio.src) {
+                globalAudio.currentTime +=5;}
+            break;
+
+        case "m":
+            volumeBtn.click();
+            break;
+   }
+});
