@@ -288,6 +288,7 @@ searchButton.addEventListener("click", () => {
         tampilkanRiwayat(); 
         recentContainer.classList.remove("show"); 
         fetchSearchResults(query);
+        document.getElementById("result-section").scrollIntoView({ behavior: `smooth`});
     } else {
         showToast("🔍 Masukkan kata kunci!");
     }

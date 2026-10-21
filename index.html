@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Verse</title>
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="title" content="Audio Verse - Music Discovery">
+    <meta name="description" content="Temani waktu relaksasimu dengan Audio Verse. Jelajahi playlist lofi dan indie terbaik sesuai mood-mu, dibalut dalam desain visual yang elegan dan memanjakan mata.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://audio-verses.netlify.app/">
+    <meta property="og:title" content="Audio Verse - Music Discovery">
+    <meta property="og:description" content="Temani waktu relaksasimu dengan Audio Verse. Jelajahi playlist lofi dan indie terbaik sesuai mood-mu, dibalut dalam desain visual yang elegan dan memanjakan mata.">
+    <meta property="og:images" content="https://audio-verses.netlify.app/images/lofi-1.gif">
+    <meta property="twittter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://audio-verses.netlify.app/">
+    <meta property="twitter:title" content="Audio Verse - Music Discovery">
+    <meta property="twitter:description" content="Temani waktu relaksasimu dengan Audio Verse. Jelajahi playlist lofi dan indie terbaik sesuai mood-mu, dibalut dalam desain visual yang elegan dan memanjakan mata.">
+    <meta property="twitter:images" content="https://audio-verses.netlify.app/images/lofi-1.gif">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
@@ -203,5 +218,14 @@
             </div>  
         </div>
     </div>
+    <script>
+        if (`serviceWorker` in navigator) {
+            window.addEventListener(`load`, () => {
+                navigator.serviceWorker.register(`sw.js`)
+                .then(() => console.log("Service Worker Siap! PWA Berjalan."))
+                .catch((error) => console.log("PWA Error:", error));
+            });
+        }
+    </script>
 </body>
 </html>

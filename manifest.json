@@ -1,0 +1,16 @@
+{
+  "name": "Audio Verse - Music Discovery",
+  "short_name": "Audio Verse",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#a855f7",
+  "icons": [
+    {
+        "src": "https://cdn-icons-png.flaticon.com/512/3062/3062206.png",
+        "size": "512x512",
+        "type": "image/png",
+        "purpose": "any maskable"
+    }
+  ]
+}
