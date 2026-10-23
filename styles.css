@@ -953,11 +953,21 @@ body {
     .top-nav {
         flex-wrap: wrap; 
         gap: 15px;
-        padding-top: 20px;
+        width: 100%
+        padding-right: 5px;
     }
     .search-group { width: 100%; order: 3; }
     .search-wrapper { max-width: 100%; }
-    .user-profile { margin-left: auto; }
+    .user-profile { 
+        gap: 10px; 
+    }
+
+    .bell-icon, .avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
     #search-input { height: 45px; font-size: 14px; }
     .btn-primary { padding: 0 15px; height: 45px; }
 
