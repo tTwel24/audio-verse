@@ -468,14 +468,32 @@ globalAudio.addEventListener("ended", () => {
 let isDragging = false; 
 function setAudioProgress(event) {
     const rect = progressContainer.getBoundingClientRect();
+    let clientX = event.type.includes("touch") ? event.touches[0].clientX : event.clientX;
+
     let clickX = event.clientX - rect.left;
     if (clickX < 0) clickX = 0;
     if (clickX > rect.width) clickX = rect.width;
     if (globalAudio.duration) { globalAudio.currentTime = (clickX / rect.width) * globalAudio.duration; }
 }
+
 progressContainer.addEventListener("mousedown", (event) => { event.preventDefault(); isDragging = true; setAudioProgress(event); });
 document.addEventListener("mousemove", (event) => { if (isDragging) setAudioProgress(event); });
 document.addEventListener("mouseup", () => { isDragging = false; });
+
+progressContainer.addEventListener("touchstart", (event) => {
+    isDragging = true;
+    setAudioProgress(event);
+}, { passive: true });
+document.addEventListener("touchmove", (event) => { 
+    if (isDragging) {
+        event.preventDefault(); // 💉 MANTRA WAJIB HP: Cegah layar web ikut ke-scroll pas lagi geser lagu!
+        setAudioProgress(event); 
+    }
+}, { passive: false });
+
+document.addEventListener("touchend", () => { 
+    isDragging = false; 
+});
 
 shuffleBtn.addEventListener("click", () => {
     isShuffle = !isShuffle;
