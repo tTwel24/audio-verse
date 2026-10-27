@@ -883,6 +883,7 @@ body {
     position: absolute;
     top: 120%;
     right: 0;
+    left: auto;
     background-color: #1a1a1a;
     border: 1px solid #333;
     border-radius: 10px;
@@ -953,8 +954,9 @@ body {
     .top-nav {
         flex-wrap: wrap; 
         gap: 15px;
-        width: 100%
+        width: 100%;
         padding-right: 5px;
+        padding-top: 25px;
     }
     .search-group { width: 100%; order: 3; }
     .search-wrapper { max-width: 100%; }
@@ -1025,4 +1027,3 @@ body {
         display: none; 
     }
 }
-

@@ -466,6 +466,7 @@ globalAudio.addEventListener("ended", () => {
 });
 
 let isDragging = false; 
+
 function setAudioProgress(event) {
     const rect = progressContainer.getBoundingClientRect();
     let clientX = event.type.includes("touch") ? event.touches[0].clientX : event.clientX;
@@ -473,17 +474,28 @@ function setAudioProgress(event) {
     let clickX = event.clientX - rect.left;
     if (clickX < 0) clickX = 0;
     if (clickX > rect.width) clickX = rect.width;
-    if (globalAudio.duration) { globalAudio.currentTime = (clickX / rect.width) * globalAudio.duration; }
+    if (globalAudio.duration) { globalAudio.currentTime = (clickX / rect.width) * globalAudio.duration;      
+    }
 }
 
-progressContainer.addEventListener("mousedown", (event) => { event.preventDefault(); isDragging = true; setAudioProgress(event); });
-document.addEventListener("mousemove", (event) => { if (isDragging) setAudioProgress(event); });
-document.addEventListener("mouseup", () => { isDragging = false; });
+progressContainer.addEventListener("mousedown", (event) => { 
+    event.preventDefault(); isDragging = true; 
+    setAudioProgress(event); 
+});
+
+document.addEventListener("mousemove", (event) => { 
+    if (isDragging) setAudioProgress(event); 
+});
+
+document.addEventListener("mouseup", () => { 
+    isDragging = false; 
+});
 
 progressContainer.addEventListener("touchstart", (event) => {
     isDragging = true;
     setAudioProgress(event);
 }, { passive: true });
+
 document.addEventListener("touchmove", (event) => { 
     if (isDragging) {
         event.preventDefault(); // 💉 MANTRA WAJIB HP: Cegah layar web ikut ke-scroll pas lagi geser lagu!
@@ -514,10 +526,12 @@ function updateVolumeIcon(vol) {
     else if (vol < 0.5) { volumeBtn.className = "fas fa-volume-down"; volumeBtn.style.color = "#b3b3b3"; } 
     else { volumeBtn.className = "fas fa-volume-up"; volumeBtn.style.color = "#b3b3b3"; }
 }
+
 volumeSlider.addEventListener("input", (e) => {
     globalAudio.volume = e.target.value / 100;
     updateVolumeIcon(globalAudio.volume);
 });
+
 volumeBtn.addEventListener("click", () => {
     if (globalAudio.volume > 0) {
         previousVolume = globalAudio.volume; 
