@@ -21,6 +21,7 @@ const resultsList = document.getElementById("results-list");
 const recentContainer = document.getElementById("recent-searches-container");
 const heroPlayBtn = document.getElementById("hero-play-btn");
 const favoriteList = document.getElementById("favorites-list");
+const moodCards = document.querySelectorAll(".mood-card");
 
 const menuToggleBtn = document.getElementById("menu-toggle-btn");
 const sidebar = document.querySelector(".sidebar");
@@ -75,6 +76,7 @@ let currentSongIndex = 0;
 let isAutoRadioMode = false; 
 let isShuffle = false;
 let isRepeat = false;
+let isDragging = false; 
 
 tampilkanSemuaFavorit();
 tampilkanRiwayat();
@@ -294,12 +296,21 @@ searchButton.addEventListener("click", () => {
     }
 });
 
-searchInput.addEventListener("keypress", (event) => { if (event.key === "Enter") searchButton.click(); });
+searchInput.addEventListener("keypress", (event) => { 
+    if (event.key === "Enter") searchButton.click(); 
+});
 
 // ==========================================
 // 8. MOOD EXPLORER (HACK API ITUNES)
 // ==========================================
-const moodCards = document.querySelectorAll(".mood-card");
+
+function scrollToResults() {
+    const resultSec = document.getElementById("result-section");
+    mainContentArea.scrollTo({
+        top: resultSec.offsetTop - 100,
+        behavior: "smooth"
+    });
+}
 
 if (heroPlayBtn) {
     heroPlayBtn.addEventListener("click", () => {
@@ -309,6 +320,7 @@ if (heroPlayBtn) {
         searchInput.value = selectedKeyword;
         isAutoRadioMode = true; 
         searchButton.click();
+        scrollToResults();
         showToast(`🎵 Memutar Vibe Pilihan: ${selectedKeyword.toUpperCase()}!`);
     });
 }
@@ -320,11 +332,10 @@ moodCards.forEach((card) => {
             const keywordsArray = rawKeyword.split(",");
             const randomIndex = Math.floor(Math.random() * keywordsArray.length);
             const selectedKeyword = keywordsArray[randomIndex].trim();
-
             searchInput.value = selectedKeyword;
             isAutoRadioMode = true;
             searchButton.click();
-            document.getElementById("result-section").scrollIntoView({ behavior: 'smooth' });
+            scrollToResults();
             showToast(`🎵 Memutar Vibe: ${selectedKeyword.toUpperCase()}!`);
         }
     });
@@ -465,40 +476,47 @@ globalAudio.addEventListener("ended", () => {
     }
 });
 
-let isDragging = false; 
+// ==========================================
+// SENSOR DRAG GARIS WAKTU (MOUSE PC & JEMPOL HP)
+// ==========================================
 
 function setAudioProgress(event) {
     const rect = progressContainer.getBoundingClientRect();
+    
+    // Cek apakah ini sentuhan Jari (touch) atau klik Mouse?
     let clientX = event.type.includes("touch") ? event.touches[0].clientX : event.clientX;
-
-    let clickX = event.clientX - rect.left;
+    
+    let clickX = clientX - rect.left;
     if (clickX < 0) clickX = 0;
     if (clickX > rect.width) clickX = rect.width;
-    if (globalAudio.duration) { globalAudio.currentTime = (clickX / rect.width) * globalAudio.duration;      
+    
+    if (globalAudio.duration) { 
+        globalAudio.currentTime = (clickX / rect.width) * globalAudio.duration; 
     }
 }
 
+// 1. SENSOR MOUSE (LAPTOP/PC)
 progressContainer.addEventListener("mousedown", (event) => { 
-    event.preventDefault(); isDragging = true; 
+    event.preventDefault(); 
+    isDragging = true; 
     setAudioProgress(event); 
 });
-
 document.addEventListener("mousemove", (event) => { 
     if (isDragging) setAudioProgress(event); 
 });
-
 document.addEventListener("mouseup", () => { 
     isDragging = false; 
 });
 
-progressContainer.addEventListener("touchstart", (event) => {
-    isDragging = true;
-    setAudioProgress(event);
+// 2. SENSOR JARI (HP/TABLET)
+progressContainer.addEventListener("touchstart", (event) => { 
+    isDragging = true; 
+    setAudioProgress(event); 
 }, { passive: true });
 
 document.addEventListener("touchmove", (event) => { 
     if (isDragging) {
-        event.preventDefault(); // 💉 MANTRA WAJIB HP: Cegah layar web ikut ke-scroll pas lagi geser lagu!
+        event.preventDefault(); // Mencegah layar HP ikut ke-scroll saat geser lagu
         setAudioProgress(event); 
     }
 }, { passive: false });

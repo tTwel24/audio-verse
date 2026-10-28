@@ -319,6 +319,10 @@ body {
     gap: 15px;
 }
 
+.avatar-container {
+    position: relative;
+}
+
 .bell-icon {
     background-color: #1a1a1a;
     width: 45px; height: 45px;
