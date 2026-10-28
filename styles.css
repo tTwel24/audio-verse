@@ -36,6 +36,7 @@ body {
     color: #ffffff; 
     display: flex; 
     height: 100vh; 
+    height: 100dvh;
     overflow: hidden; 
 }
 
@@ -960,8 +961,17 @@ body {
         gap: 15px;
         width: 100%;
         padding-right: 5px;
-        padding-top: 25px;
+        padding-top: 30px;
     }
+
+    .notif-dropdown,
+    .profile-dropdown {
+        right: 0 !important;
+        left: auto !important;
+        width: 250px !important;
+        top: 130% !important;
+    }
+    
     .search-group { width: 100%; order: 3; }
     .search-wrapper { max-width: 100%; }
     .user-profile { 
