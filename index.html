@@ -8,24 +8,24 @@
     <link rel="manifest" href="manifest.json">
 
     <meta name="title" content="Audio Verse - Music Discovery">
-    <meta name="description" content="Temani waktu relaksasimu dengan Audio Verse. Jelajahi playlist lofi dan indie terbaik sesuai mood-mu, dibalut dalam desain visual yang elegan dan memanjakan mata.">
+    <meta name="description" content="Discover your next favorite track with Audio Verse. From nostalgic Japanese City Pop to relaxing Lo-Fi and Modern Indie. Experience seamless music discovery tailored to your every mood.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://audio-verses.netlify.app/">
     <meta property="og:title" content="Audio Verse - Music Discovery">
-    <meta property="og:description" content="Temani waktu relaksasimu dengan Audio Verse. Jelajahi playlist lofi dan indie terbaik sesuai mood-mu, dibalut dalam desain visual yang elegan dan memanjakan mata.">
-    <meta property="og:images" content="https://audio-verses.netlify.app/images/lofi-1.gif">
-    <meta property="twittter:card" content="summary_large_image">
+    <meta property="og:description" content="Discover your next favorite track with Audio Verse. From nostalgic Japanese City Pop to relaxing Lo-Fi and Modern Indie. Experience seamless music discovery tailored to your every mood.">
+    <meta property="og:image" content="https://audio-verses.netlify.app/images/lofi-1.gif">
+    <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://audio-verses.netlify.app/">
     <meta property="twitter:title" content="Audio Verse - Music Discovery">
-    <meta property="twitter:description" content="Temani waktu relaksasimu dengan Audio Verse. Jelajahi playlist lofi dan indie terbaik sesuai mood-mu, dibalut dalam desain visual yang elegan dan memanjakan mata.">
-    <meta property="twitter:images" content="https://audio-verses.netlify.app/images/lofi-1.gif">
+    <meta property="twitter:description" content="Discover your next favorite track with Audio Verse. From nostalgic Japanese City Pop to relaxing Lo-Fi and Modern Indie. Experience seamless music discovery tailored to your every mood.">
+    <meta property="twitter:image" content="https://audio-verses.netlify.app/images/lofi-1.gif">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- 1. SIDEBAR KIRI -->
+    <!-- 1. LEFT SIDEBAR -->
     <aside class="sidebar">
 
         <div class="sidebar-header">
@@ -36,12 +36,12 @@
             <ul>
                 <li id="nav-home" class="active"><i class="fas fa-home"></i> <span class="nav-text">Home</span></li>
                 <li id="nav-explore"><i class="fas fa-compass"></i> <span class="nav-text">Explore</span></li>
-                <li id="nav-library"><i class="fas fa-list-ul"></i> <span class="nav-text">Favoritku</span></li>
+                <li id="nav-library"><i class="fas fa-list-ul"></i> <span class="nav-text">Favorites</span></li>
             </ul>
         </nav>
     </aside>
 
-    <!-- 2. KONTEN UTAMA (Tengah - Kanan) -->
+    <!-- 2. MAIN CONTENT ( MID - RIGHT) -->
     <main class="main-content">
         
         <!-- A. TOP NAVIGATION -->
@@ -49,7 +49,7 @@
 
             <div class="search-group">
                 <div class="search-wrapper">
-                    <input type="text" id="search-input" placeholder="Cari lagu atau artis...">
+                    <input type="text" id="search-input" placeholder="Search for songs or artist...">
                     <div id="recent-searches-container" class="recent-dropdown"></div>
                 </div>
                 <button id="search-button" class="btn-primary"><i class="fas fa-search"></i> Search</button>
@@ -57,36 +57,36 @@
             
             <div class="user-profile">
                 <div class="notification-container" style="position: relative;">
-                    <div id="bell-icon" class="bell-icon" title="Notifikasi">
+                    <div id="bell-icon" class="bell-icon" title="Notifications">
                         <i class="fas fa-bell"></i>
                         <span id="notif-badge" class="notif-badge"></span>
                     </div>
 
                     <div id="notif-dropdown" class="notif-dropdown">
-                        <h4>Notifikasi</h4>
+                        <h4>Notification</h4>
                         <div class="divider"></div>
                         <div class="notif-item">
                             <div class="notif-icon"><i class="fas fa-music"></i>
                     </div>
                 
                       <div class="notif-text">
-                                <p><strong>Rilis Baru!</strong> Cek pilihan editor Lofi & Indie sekarang.</p>
-                                <span>Baru saja</span>
+                                <p><strong>New Release!</strong> Check out the Lofi, City Pop & Indie editor's picks now.</p>
+                                <span>Recently</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="avatar-container">
-                    <div id="user-avatar" class="avatar" title="Profil Saya">ME</div>
+                    <div id="user-avatar" class="avatar" title="My Profile"></div>
 
                 <div id="profile-dropdown" class="profile-dropdown">
                     <ul>
-                        <li id="btn-profile"><i class="fas fa-user"></i> Profil Saya</li>
-                        <li id="btn-settings"><i class="fas fa-cog"></i> Pengaturan</li>
+                        <li id="btn-profile"><i class="fas fa-user"></i> My Profile</li>
+                        <li id="btn-settings"><i class="fas fa-cog"></i> Setting</li>
                         
                         <li class="divider"></li>
-                        <li id="logout-btn" class="logout"><i class="fas fa-sign-out-alt"></i> Keluar</li>
+                        <li id="logout-btn" class="logout"><i class="fas fa-sign-out-alt"></i> Sign Out</li>
                     </ul>
                 </div>
             </div>
@@ -97,10 +97,10 @@
         <div id="hero-banner" class="hero-banner">
             
         <div class="hero-text-area">
-            <span class="badge">PILIHAN EDITOR</span>
+            <span class="badge">EDITOR'S PICK</span>
             <h2>Midnight City & Nostalgia</h2>
-            <p>Bawa dirimu menyusuri malam dengan perpaduan retro City Pop Jepang, ketenangan irama Lo-fi, hingga manisnya melodi Indie lokal. Sempurna untuk menemani waktu santaimu.</p>
-            <button id="hero-play-btn" class="btn-glow"><i class="fas fa-play"></i> Putar Semua</button>
+            <p>Let yourself drift through the night with a blend of Japanese City Pop, the calm rhythms of Lo-fi, and the sweet melodies of local Indie music—the perfect accompaniment to your downtime.</p>
+            <button id="hero-play-btn" class="btn-glow"><i class="fas fa-play"></i> Play All</button>
         </div>
 
         <!-- Area Kanan: Slideshow Gambar Lofi -->
@@ -119,13 +119,13 @@
         <section id="mood-section">
             <div class="mood-container">
                 <div class="mood-card" data-keyword="pamungkas, banda neira, rini, sal priadi, fourtwnty, isyana sarasvati, tulus, glenn fredly">
-                    <i class="fas fa-coffee"></i> Santai
+                    <i class="fas fa-coffee"></i> Relax
                 </div>
                 <div class="mood-card" data-keyword="dua lipa, bruno mars, ed sheeran, the weeknd, taylor swift, ariana grande">
-                    <i class="fas fa-fire"></i> Semangat
+                    <i class="fas fa-fire"></i> Upbeat
                 </div>
                 <div class="mood-card" data-keyword="adele, nadin amizah, mahalini, lewis capaldi, sam smith, billie eilish">
-                    <i class="fas fa-cloud-rain"></i> Sedih
+                    <i class="fas fa-cloud-rain"></i> Sad
                 </div>
                 <div class="mood-card" data-keyword="michael buble, louis armstrong, frank sinatra, norah jones, ella fitzgerald, laufey">
                     <i class="fas fa-music"></i> Jazz
@@ -134,8 +134,10 @@
                     <i class="fas fa-dumbbell"></i> Workout
                 </div>
 
-                <div id="mood-to-fav" class="mood-card" style="background: transparent; border: 1px solid #ff3b3b; color: #ff3b3b;">
-                    <i class="fas fa-heart"></i> Buka Favorit
+                <div class="vertical-divider"></div>
+
+                <div id="mood-to-fav" class="mood-card" style="background-color: #242424; border: 1px solid #333; color: #a855f7;">
+                    <i class="fas fa-heart"></i> Open Favorites
                 </div>
             </div>
         </section>
@@ -143,21 +145,22 @@
         <!-- D. HASIL PENCARIAN -->
         <section id="result-section">
             <div class="section-header">
-                <h2>Jelajahi Audio</h2>
+                <h2>Discover Audio</h2>
             </div>
             <div id="results-list" class="music-grid"></div>
+            <div id="pagination-controls" class="pagination-container"></div>
         </section>
 
         <!-- E. DAFTAR FAVORIT -->
         <section id="favorites-section" class="d-none">
             <div class="section-header">
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <button id="back-to-home-btn" class="back-btn" title="Kembali ke Home">
+                    <button id="back-to-home-btn" class="back-btn" title="Back to Home">
                         <i class="fas fa-arrow-left"></i></button>
-                <h2>Lagu Favoritmu</h2>
+                <h2>Your Favorites</h2>
                 </div>
                 
-                <button id="clear-favorites-button" class="delete-btn"><i class="fas fa-trash"></i> Kosongkan</button>
+                <button id="clear-favorites-button" class="delete-btn"><i class="fas fa-trash"></i> Clear All</button>
             </div>
             <div id="favorites-list" class="music-grid"></div>
         </section> 
@@ -165,23 +168,23 @@
 
     <!-- 3. GLOBAL MUSIC PLAYER -->
     <footer class="global-player">
-        <!-- GARIS WAKTU MELAYANG DI ATAP PLAYER -->
+        <!-- FLOATING TIMELINE ABOVE THE PLAYER -->
         <div id="progress-container" class="progress-top-bar">
             <div id="progress-bar" class="progress-bar-fill"></div>
         </div>
 
         <div class="player-content">
-            <!-- KIRI (Info & Tombol Hati) -->
+            <!-- LEFT (Info & Heart Icon) -->
             <div class="player-info">
                 <img id="player-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect width='100%25' height='100%25' fill='%231a1a1a'/%3E%3Ctext x='50%25' y='50%25' font-size='24' text-anchor='middle' dominant-baseline='middle' fill='%23555555'%3E%E2%99%AB%3C/text%3E%3C/svg%3E" alt="Cover">
                 <div class="player-text">
-                    <h4 id="player-title">Belum ada lagu</h4>
-                    <p id="player-artist">Pilih lagu untuk memutar</p>
+                    <h4 id="player-title">No song playing</h4>
+                    <p id="player-artist">Select a track to play</p>
                 </div>
                 <button id="player-fav-btn" class="player-fav-btn"><i class="far fa-heart"></i></button>
             </div>
             
-            <!-- TENGAH (5 Kontrol: Shuffle, Prev, Play, Next, Repeat) -->
+            <!-- CENTER (5 Control: Shuffle, Prev, Play, Next, Repeat) -->
             <div class="custom-controls">
                 <button id="shuffle-btn" class="ctrl-btn"><i class="fas fa-random"></i></button> 
                 <button id="prev-btn" class="ctrl-btn"><i class="fas fa-step-backward"></i></button> 
@@ -190,8 +193,10 @@
                 <button id="repeat-btn" class="ctrl-btn"><i class="fas fa-redo-alt"></i></button>
             </div>
 
-            <!-- KANAN (Waktu & Volume) -->
+            <!-- RIGHT (TIME & VOLUME) -->
             <div class="player-extra">
+                <i id="share-btn" class="fas fa-share-alt" style="cursor: pointer; transition: 0.3s; margin-right: 15px;" title="Sharing"></i>
+                
                 <div class="time-display">
                     <span id="current-time">0:00</span> <span style="color:#555;">/</span> <span id="total-duration">0:30</span>
                 </div>
@@ -206,24 +211,58 @@
         </div>
     </footer>
 
-    <!-- 4. ALAT BANTU (TOAST & MODAL) -->
-    <div id="toast" class="toast"></div>
+    <!-- 4. TOAST AND MODALS -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <div id="confirm-modal" class="modal-overlay">
-        <div class="modal-box">
-            <h3>⚠️ Konfirmasi</h3>
-            <p>Apakah Anda yakin ingin menghapus SEMUA lagu favorit?</p>
+    <!-- Clear favorites confirmation modal -->
+    <div id="confirm-modal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title">
+            <div class="modal-icon-danger">
+                <i class="fas fa-trash-alt"></i>
+            </div>
+            <h3 id="confirm-modal-title">Confirmation</h3>
+            <p>Are you sure you want to delete all favorite songs?</p>
             <div class="modal-actions">
-                <button id="modal-cancel-btn" class="modal-btn modal-btn-cancel">Batal</button>
-                <button id="modal-confirm-btn" class="modal-btn modal-btn-danger">Ya,<br>Hapus Semua</button>
-            </div>  
+                <button id="modal-cancel-btn" type="button" class="modal-btn modal-btn-cancel">Cancel</button>
+                <button id="modal-confirm-btn" type="button" class="modal-btn modal-btn-danger">Yes,<br>Clear All</button>
+            </div>
         </div>
     </div>
+
+    <!-- Share modal (separate from the clear-favorites confirmation) -->
+    <div id="share-modal" class="modal-overlay" aria-hidden="true">
+        <div class="share-box" role="dialog" aria-modal="true" aria-labelledby="share-modal-title">
+            <div class="share-header">
+                <h3 id="share-modal-title">Share Audio Verse</h3>
+                <button id="close-share-btn" type="button" class="close-share" aria-label="Close share dialog">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="copy-link-area">
+                <input type="text" id="share-link-input" readonly aria-label="Share link">
+                <button id="copy-link-btn" type="button" class="btn-glow" style="padding: 10px 15px; font-size: 13px;">Copy</button>
+            </div>
+
+            <div class="share-options" aria-label="Share using a social network">
+                <button id="share-wa" type="button" class="social-btn wa" aria-label="Share on WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </button>
+                <button id="share-tw" type="button" class="social-btn tw" aria-label="Share on X">
+                    <i class="fab fa-twitter"></i>
+                </button>
+                <button id="share-fb" type="button" class="social-btn fb" aria-label="Share on Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         if (`serviceWorker` in navigator) {
             window.addEventListener(`load`, () => {
                 navigator.serviceWorker.register(`sw.js`)
-                .then(() => console.log("Service Worker Siap! PWA Berjalan."))
+                .then(() => console.log("Service Worker Ready! PWA Running."))
                 .catch((error) => console.log("PWA Error:", error));
             });
         }
